@@ -33,17 +33,40 @@ juce::AudioProcessorValueTreeState::ParameterLayout OrbitAudioProcessor::createP
 {
     juce::AudioProcessorValueTreeState::ParameterLayout parameters;
 
+    parameters.add(std::make_unique<juce::AudioParameterBool>(
+        "bypass",
+        "Bypass",
+        false));
+
     parameters.add(std::make_unique<juce::AudioParameterFloat>(
         "rb_room_size",
-        "rb_room_size",
+        "Room Size",
         juce::NormalisableRange<float>(0.0f, 1.0f),
-        0.475f
+        0.5f
         ));
     parameters.add(std::make_unique<juce::AudioParameterFloat>(
         "rb_damping",
-        "rb_damping",
+        "Damping",
         juce::NormalisableRange<float>(0.0f, 1.0f),
         0.5f
+        ));
+    parameters.add(std::make_unique<juce::AudioParameterFloat>(
+        "rb_dry_wet",
+        "Dry/Wet",
+        juce::NormalisableRange<float>(0.0f, 1.0f),
+        0.33f
+        ));
+    parameters.add(std::make_unique<juce::AudioParameterFloat>(
+        "rb_width",
+        "Width",
+        juce::NormalisableRange<float>(0.0f, 1.0f),
+        0.5f
+        ));
+    parameters.add(std::make_unique<juce::AudioParameterFloat>(
+        "rb_freeze",
+        "Normal/Feedback",
+        juce::NormalisableRange<float>(0.0f, 1.0f),
+        0.0f
         ));
 
     return parameters;
@@ -164,9 +187,15 @@ void OrbitAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::
         buffer.clear (i, 0, buffer.getNumSamples());
 
 
-    juce::dsp::Reverb::Parameters reverbParameters = orbit.getReverbParamters(apvts.getRawParameterValue("rb_room_size")->load(),
-                                                                               apvts.getRawParameterValue("rb_damping")->load());
-    orbit.process(buffer, reverbParameters);
+    juce::dsp::Reverb::Parameters reverbParameters = orbit.getReverbParamters(
+        apvts.getRawParameterValue("rb_room_size")->load(),
+        apvts.getRawParameterValue("rb_damping")->load(),
+        apvts.getRawParameterValue("rb_dry_wet")->load(),
+        1.0f - apvts.getRawParameterValue("rb_dry_wet")->load(),
+        apvts.getRawParameterValue("rb_width")->load(),
+        apvts.getRawParameterValue("rb_freeze")->load()
+    );
+    orbit.process(buffer, reverbParameters, apvts.getRawParameterValue("bypass")->load());
 }
 
 //==============================================================================
