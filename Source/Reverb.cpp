@@ -10,15 +10,15 @@
 
 #include "Reverb.h"
 
-JuceReverb::JuceReverb() {}
-JuceReverb::~JuceReverb() {}
+Reverb::Reverb() {}
+Reverb::~Reverb() {}
 
-juce::dsp::Reverb::Parameters JuceReverb::getReverbParamters(float roomSize,
-                                                             float damping,
-                                                             float wetLevel,
-                                                             float dryLevel,
-                                                             float width,
-                                                             float freezeMode)
+juce::dsp::Reverb::Parameters Reverb::getReverbParamters(float roomSize,
+                                                         float damping,
+                                                         float wetLevel,
+                                                         float dryLevel,
+                                                         float width,
+                                                         float freezeMode)
 {
     juce::dsp::Reverb::Parameters reverbParameters;
     reverbParameters.roomSize = roomSize;
@@ -30,20 +30,14 @@ juce::dsp::Reverb::Parameters JuceReverb::getReverbParamters(float roomSize,
     return reverbParameters;
 }
 
-void JuceReverb::prepare(juce::dsp::ProcessSpec spec)
+void Reverb::prepare(juce::dsp::ProcessSpec spec)
 {
     reverb.reset();
     reverb.prepare(spec);
 }
 
-//void JuceReverb::updateReverb(float roomSize, float damping)
-//{
-//    reverbParameters.roomSize = roomSize;
-//    reverbParameters.damping = damping;
-//    reverb.setParameters(reverbParameters);
-//}
 
-void JuceReverb::process(juce::AudioBuffer<float> inBuffer, juce::dsp::Reverb::Parameters reverbParameters, bool isBypassed)
+void Reverb::process(juce::AudioBuffer<float> inBuffer, juce::dsp::Reverb::Parameters reverbParameters, bool isBypassed)
 {
     if (isBypassed) { return; }
     reverb.setParameters(reverbParameters);

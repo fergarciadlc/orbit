@@ -59,7 +59,7 @@ public:
     juce::AudioProcessorValueTreeState::ParameterLayout createParameters();
 private:
 
-    JuceReverb juceReverb;
+    Reverb reverb;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (OrbitAudioProcessor)
 };
