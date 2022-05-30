@@ -13,46 +13,42 @@
 JuceReverb::JuceReverb() {}
 JuceReverb::~JuceReverb() {}
 
-void JuceReverb::prepare(double inSampleRate, 
-                         int inSamplesPerBlock, 
-                         int inNumChannels, 
-                         float roomSize, 
-                         float damping,
-                         float wetLevel,
-                         float dryLevel, 
-                         float width, 
-                         float freezeMode)
+juce::dsp::Reverb::Parameters JuceReverb::getReverbParamters(float roomSize,
+                                                             float damping,
+                                                             float wetLevel,
+                                                             float dryLevel,
+                                                             float width,
+                                                             float freezeMode)
 {
-    juce::dsp::ProcessSpec spec{};
-    spec.sampleRate = inSampleRate;
-    spec.maximumBlockSize = inSamplesPerBlock;
-    spec.numChannels = inNumChannels;
-
+    juce::dsp::Reverb::Parameters reverbParameters;
     reverbParameters.roomSize = roomSize;
     reverbParameters.damping = damping;
     reverbParameters.wetLevel = wetLevel;
     reverbParameters.width = width;
     reverbParameters.freezeMode = freezeMode;
 
-    reverb.reset();
-    updateReverb(roomSize, damping);
-    reverb.prepare(spec);
-    reverb.setParameters(reverbParameters);
-
+    return reverbParameters;
 }
 
-void JuceReverb::updateReverb(float roomSize, float damping)
+void JuceReverb::prepare(juce::dsp::ProcessSpec spec)
 {
-    reverbParameters.roomSize = roomSize;
-    reverbParameters.damping = damping;
-    reverb.setParameters(reverbParameters);
+    reverb.reset();
+    reverb.prepare(spec);
 }
 
-void JuceReverb::process(juce::AudioBuffer<float> inBuffer, bool isBypassed)
+//void JuceReverb::updateReverb(float roomSize, float damping)
+//{
+//    reverbParameters.roomSize = roomSize;
+//    reverbParameters.damping = damping;
+//    reverb.setParameters(reverbParameters);
+//}
+
+void JuceReverb::process(juce::AudioBuffer<float> inBuffer, juce::dsp::Reverb::Parameters reverbParameters, bool isBypassed)
 {
     if (isBypassed) { return; }
+    reverb.setParameters(reverbParameters);
     juce::dsp::AudioBlock<float> block(inBuffer);
     juce::dsp::ProcessContextReplacing<float> context(block);
     reverb.process(context);
-    
+
 }
