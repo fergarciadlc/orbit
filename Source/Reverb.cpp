@@ -37,9 +37,8 @@ void Reverb::prepare(juce::dsp::ProcessSpec spec)
 }
 
 
-void Reverb::process(juce::AudioBuffer<float> inBuffer, juce::dsp::Reverb::Parameters reverbParameters, bool isBypassed)
+void Reverb::process(juce::AudioBuffer<float> inBuffer, juce::dsp::Reverb::Parameters reverbParameters)
 {
-    if (isBypassed) { return; }
     reverb.setParameters(reverbParameters);
     juce::dsp::AudioBlock<float> block(inBuffer);
     juce::dsp::ProcessContextReplacing<float> context(block);

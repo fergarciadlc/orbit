@@ -9,6 +9,8 @@
         <FILE id="PHQ2To" name="Reverb.cpp" compile="1" resource="0" file="Source/Reverb.cpp"/>
         <FILE id="goKRt0" name="Reverb.h" compile="0" resource="0" file="Source/Reverb.h"/>
       </GROUP>
+      <FILE id="U12dVR" name="Orbit.cpp" compile="1" resource="0" file="Source/Orbit.cpp"/>
+      <FILE id="Zcr8mK" name="Orbit.h" compile="0" resource="0" file="Source/Orbit.h"/>
       <FILE id="CJ9rAt" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="adNqgv" name="PluginProcessor.h" compile="0" resource="0"

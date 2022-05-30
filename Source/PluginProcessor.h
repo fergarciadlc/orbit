@@ -9,7 +9,7 @@
 #pragma once
 
 #include <JuceHeader.h>
-#include "Reverb.h"
+#include "Orbit.h"
 
 //==============================================================================
 /**
@@ -59,7 +59,8 @@ public:
     juce::AudioProcessorValueTreeState::ParameterLayout createParameters();
 private:
 
-    Reverb reverb;
+    Orbit orbit;
+    
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (OrbitAudioProcessor)
 };

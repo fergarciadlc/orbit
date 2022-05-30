@@ -37,7 +37,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout OrbitAudioProcessor::createP
         "rb_room_size",
         "rb_room_size",
         juce::NormalisableRange<float>(0.0f, 1.0f),
-        0.4f
+        0.475f
         ));
     parameters.add(std::make_unique<juce::AudioParameterFloat>(
         "rb_damping",
@@ -119,7 +119,7 @@ void OrbitAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
     spec.maximumBlockSize = samplesPerBlock;
     spec.numChannels = getTotalNumInputChannels();
 
-    reverb.prepare(spec);
+    orbit.prepare(spec);
 }
 
 void OrbitAudioProcessor::releaseResources()
@@ -164,9 +164,9 @@ void OrbitAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::
         buffer.clear (i, 0, buffer.getNumSamples());
 
 
-    juce::dsp::Reverb::Parameters reverbParameters = reverb.getReverbParamters(apvts.getRawParameterValue("rb_room_size")->load(),
+    juce::dsp::Reverb::Parameters reverbParameters = orbit.getReverbParamters(apvts.getRawParameterValue("rb_room_size")->load(),
                                                                                apvts.getRawParameterValue("rb_damping")->load());
-    reverb.process(buffer, reverbParameters);
+    orbit.process(buffer, reverbParameters);
 }
 
 //==============================================================================

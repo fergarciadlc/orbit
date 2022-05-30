@@ -1,22 +1,23 @@
 /*
   ==============================================================================
 
-    Reverb.h
-    Created: 29 May 2022 9:17:59pm
+    Orbit.h
+    Created: 29 May 2022 11:23:29pm
     Author:  Fernando
 
   ==============================================================================
 */
 
 #pragma once
-#include <JuceHeader.h>
 
-class Reverb
+#include<JuceHeader.h>
+#include "Reverb.h"
+
+class Orbit
 {
 public:
-    
-    Reverb();
-    ~Reverb();
+    Orbit();
+    ~Orbit();
 
     juce::dsp::Reverb::Parameters getReverbParamters(float roomSize = 0.5f,
                                                      float damping = 0.5f,
@@ -24,12 +25,15 @@ public:
                                                      float dryLevel = 0.4f,
                                                      float width = 1.0f,
                                                      float freezeMode = 0.0f);
-    
+
     void prepare(juce::dsp::ProcessSpec spec);
 
     void process(juce::AudioBuffer<float> inBuffer, 
-                 juce::dsp::Reverb::Parameters reverbParameters);
+                 juce::dsp::Reverb::Parameters reverbParameters, 
+                 bool isBypassed = false);
 
 private:
-    juce::dsp::Reverb reverb;
+
+    Reverb reverb;
+
 };
