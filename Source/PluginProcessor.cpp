@@ -47,6 +47,14 @@ juce::AudioProcessorValueTreeState::ParameterLayout OrbitAudioProcessor::createP
         ));
 
     parameters.add(std::make_unique<juce::AudioParameterFloat>(
+        "output_gain",
+        "Output",
+        0.0f,
+        2.0f,
+        1.0f
+        ));
+
+    parameters.add(std::make_unique<juce::AudioParameterFloat>(
         "rb_room_size",
         "Room Size",
         juce::NormalisableRange<float>(0.0f, 1.0f),
@@ -203,6 +211,7 @@ void OrbitAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::
     bool isBypassed = apvts.getRawParameterValue("bypass")->load();
 
     float inputGain = apvts.getRawParameterValue("input_gain")->load();
+    float outputGain = apvts.getRawParameterValue("output_gain")->load();
 
     juce::dsp::Reverb::Parameters reverbParameters = orbit.getReverbParamters(
         apvts.getRawParameterValue("rb_room_size")->load(),
@@ -217,6 +226,7 @@ void OrbitAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::
         buffer,
         inputGain,
         reverbParameters,
+        outputGain,
         isBypassed
     );
 }

@@ -31,7 +31,8 @@ public:
 
     void process(juce::AudioBuffer<float> inBuffer,
                  float inGain,
-                 juce::dsp::Reverb::Parameters reverbParameters, 
+                 juce::dsp::Reverb::Parameters reverbParameters,
+                 float outGain,
                  bool isBypassed = false);
 
 private:

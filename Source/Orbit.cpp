@@ -31,7 +31,8 @@ void Orbit::prepare(juce::dsp::ProcessSpec spec)
 
 void Orbit::process(juce::AudioBuffer<float> inBuffer,
                     float inGain,
-                    juce::dsp::Reverb::Parameters reverbParameters, 
+                    juce::dsp::Reverb::Parameters reverbParameters,
+                    float outGain,
                     bool isBypassed)
 {
     if (isBypassed) { return; }
@@ -39,4 +40,5 @@ void Orbit::process(juce::AudioBuffer<float> inBuffer,
     //DBG("DRY 2x:"); DBG(reverbParameters.dryLevel*2.0f);
     gain.process(inBuffer, inGain);
     reverb.process(inBuffer, reverbParameters);
+    gain.process(inBuffer, outGain);
 }
