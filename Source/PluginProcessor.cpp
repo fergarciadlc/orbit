@@ -39,6 +39,14 @@ juce::AudioProcessorValueTreeState::ParameterLayout OrbitAudioProcessor::createP
         false));
 
     parameters.add(std::make_unique<juce::AudioParameterFloat>(
+        "input_gain",
+        "Input",
+        0.0f,
+        2.0f,
+        1.0f
+        ));
+
+    parameters.add(std::make_unique<juce::AudioParameterFloat>(
         "rb_room_size",
         "Room Size",
         juce::NormalisableRange<float>(0.0f, 1.0f),
@@ -51,11 +59,17 @@ juce::AudioProcessorValueTreeState::ParameterLayout OrbitAudioProcessor::createP
         0.5f
         ));
     parameters.add(std::make_unique<juce::AudioParameterFloat>(
-        "rb_dry_wet",
+        "rb_wet",
         "Dry/Wet",
         juce::NormalisableRange<float>(0.0f, 1.0f),
         0.33f
         ));
+    //parameters.add(std::make_unique<juce::AudioParameterFloat>(
+    //    "rb_dry",
+    //    "Dry",
+    //    juce::NormalisableRange<float>(0.0f, 1.0f),
+    //    0.33f
+    //    ));
     parameters.add(std::make_unique<juce::AudioParameterFloat>(
         "rb_width",
         "Width",
@@ -186,16 +200,25 @@ void OrbitAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
 
+    bool isBypassed = apvts.getRawParameterValue("bypass")->load();
+
+    float inputGain = apvts.getRawParameterValue("input_gain")->load();
 
     juce::dsp::Reverb::Parameters reverbParameters = orbit.getReverbParamters(
         apvts.getRawParameterValue("rb_room_size")->load(),
         apvts.getRawParameterValue("rb_damping")->load(),
-        apvts.getRawParameterValue("rb_dry_wet")->load(),
-        1.0f - apvts.getRawParameterValue("rb_dry_wet")->load(),
+        apvts.getRawParameterValue("rb_wet")->load(),
+        1.0f - apvts.getRawParameterValue("rb_wet")->load(),
         apvts.getRawParameterValue("rb_width")->load(),
         apvts.getRawParameterValue("rb_freeze")->load()
     );
-    orbit.process(buffer, reverbParameters, apvts.getRawParameterValue("bypass")->load());
+
+    orbit.process(
+        buffer,
+        inputGain,
+        reverbParameters,
+        isBypassed
+    );
 }
 
 //==============================================================================

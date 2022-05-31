@@ -15,7 +15,12 @@ OrbitAudioProcessorEditor::OrbitAudioProcessorEditor (OrbitAudioProcessor& p)
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    setSize (400, 300);
+    setSize(600, 320);
+
+    addAndMakeVisible(roomSizeDial);
+    
+
+    
 }
 
 OrbitAudioProcessorEditor::~OrbitAudioProcessorEditor()
@@ -30,11 +35,33 @@ void OrbitAudioProcessorEditor::paint (juce::Graphics& g)
 
     g.setColour (juce::Colours::white);
     g.setFont (15.0f);
-    g.drawFittedText ("Hello World!", getLocalBounds(), juce::Justification::centred, 1);
+    g.drawFittedText ("oRBit", getLocalBounds(), juce::Justification::centred, 1);
 }
 
 void OrbitAudioProcessorEditor::resized()
 {
-    // This is generally where you'll want to lay out the positions of any
-    // subcomponents in your editor..
+    auto bounds       = getLocalBounds().toFloat()
+                                        .removeFromBottom (getHeight() * 0.9f)
+                                        .reduced (getWidth() * 0.06f, getHeight() * 0.25f);
+    auto dialWidth    = bounds.getWidth() * 0.25f;
+    auto dialHeight   = dialWidth;
+
+    roomSizeDial.setSliderStyle(juce::Slider::SliderStyle::RotaryVerticalDrag);
+    roomSizeDial.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, true, 0, 0);
+
+    //roomSizeDial.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 45, 20);
+    //roomSizeDial.setNumDecimalPlacesToDisplay(0);
+    //roomSizeDial.setTextBoxIsEditable(true);
+    //roomSizeDial.setRange(1, 100, 1);
+
+    roomSizeDial.setBounds((getWidth() / 2) - dialWidth/2, getHeight() / 2 - dialHeight/2, dialWidth, dialHeight);
+    //auto buttonWidth  = bounds.getWidth() * 0.18f;
+    //auto buttonHeight = buttonWidth * 0.8f;
+    //auto compArea     = bounds.getWidth() / .0f;
+    //
+    //auto sizeMasterDialArea = bounds.removeFromLeft(compArea);
+
+    //roomSizeDial.setBounds(sizeMasterDialArea.withSizeKeepingCentre(dialWidth, dialHeight).toNearestInt());
+
+
 }

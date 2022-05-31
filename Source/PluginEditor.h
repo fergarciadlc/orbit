@@ -26,7 +26,11 @@ public:
 
 private:
     // This reference is provided as a quick way for your editor to
-    // access the processor object that created it.
+    // access the processor object that roomSizeDialcreated it.
+    juce::Slider roomSizeDial;
+
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> roomSizeDialAttach;
+
     OrbitAudioProcessor& audioProcessor;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (OrbitAudioProcessorEditor)

@@ -24,6 +24,7 @@ juce::dsp::Reverb::Parameters Reverb::getReverbParamters(float roomSize,
     reverbParameters.roomSize = roomSize;
     reverbParameters.damping = damping;
     reverbParameters.wetLevel = wetLevel;
+    reverbParameters.dryLevel = dryLevel;
     reverbParameters.width = width;
     reverbParameters.freezeMode = freezeMode;
 

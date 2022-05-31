@@ -6,6 +6,8 @@
   <MAINGROUP id="Etl0n4" name="orbit">
     <GROUP id="{1F612503-F3CD-E7BA-00B7-C620AB717636}" name="Source">
       <GROUP id="{4B043EFD-80A0-5B66-7E3F-9CD9EFCB0C60}" name="DSP">
+        <FILE id="pqwimS" name="Gain.cpp" compile="1" resource="0" file="Source/Gain.cpp"/>
+        <FILE id="BE9qTv" name="Gain.h" compile="0" resource="0" file="Source/Gain.h"/>
         <FILE id="PHQ2To" name="Reverb.cpp" compile="1" resource="0" file="Source/Reverb.cpp"/>
         <FILE id="goKRt0" name="Reverb.h" compile="0" resource="0" file="Source/Reverb.h"/>
       </GROUP>

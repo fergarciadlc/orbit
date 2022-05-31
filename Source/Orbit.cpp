@@ -20,7 +20,7 @@ juce::dsp::Reverb::Parameters Orbit::getReverbParamters(float roomSize,
                                                         float width,
                                                         float freezeMode)
 {
-    return reverb.getReverbParamters(roomSize, damping, wetLevel, dryLevel, width, freezeMode);
+    return reverb.getReverbParamters(roomSize, damping, wetLevel, 0.5f * dryLevel, width, freezeMode);
 }
 
 void Orbit::prepare(juce::dsp::ProcessSpec spec)
@@ -29,8 +29,14 @@ void Orbit::prepare(juce::dsp::ProcessSpec spec)
 }
 
 
-void Orbit::process(juce::AudioBuffer<float> inBuffer, juce::dsp::Reverb::Parameters reverbParameters, bool isBypassed)
+void Orbit::process(juce::AudioBuffer<float> inBuffer,
+                    float inGain,
+                    juce::dsp::Reverb::Parameters reverbParameters, 
+                    bool isBypassed)
 {
     if (isBypassed) { return; }
+    //DBG("Wet:"); DBG(reverbParameters.wetLevel);
+    //DBG("DRY 2x:"); DBG(reverbParameters.dryLevel*2.0f);
+    gain.process(inBuffer, inGain);
     reverb.process(inBuffer, reverbParameters);
 }

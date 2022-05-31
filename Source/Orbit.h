@@ -12,6 +12,7 @@
 
 #include<JuceHeader.h>
 #include "Reverb.h"
+#include "Gain.h"
 
 class Orbit
 {
@@ -28,12 +29,14 @@ public:
 
     void prepare(juce::dsp::ProcessSpec spec);
 
-    void process(juce::AudioBuffer<float> inBuffer, 
+    void process(juce::AudioBuffer<float> inBuffer,
+                 float inGain,
                  juce::dsp::Reverb::Parameters reverbParameters, 
                  bool isBypassed = false);
 
 private:
-
+    
+    Gain gain;
     Reverb reverb;
 
 };
