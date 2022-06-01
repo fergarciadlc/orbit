@@ -10,6 +10,9 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include "InputGUI.h"
+#include "ProcessingGUI.h"
+#include "OutputGUI.h"
 
 //==============================================================================
 /**
@@ -25,11 +28,12 @@ public:
     void resized() override;
 
 private:
-    // This reference is provided as a quick way for your editor to
-    // access the processor object that roomSizeDialcreated it.
-    juce::Slider roomSizeDial;
+    //juce::Slider roomSizeDial;
+    //std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> roomSizeDialAttach;
 
-    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> roomSizeDialAttach;
+    InputGUI input;
+    ProcessingGUI processing;
+    OutputGUI output;
 
     OrbitAudioProcessor& audioProcessor;
 

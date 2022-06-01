@@ -5,6 +5,15 @@
               pluginFormats="buildStandalone,buildVST3">
   <MAINGROUP id="Etl0n4" name="orbit">
     <GROUP id="{1F612503-F3CD-E7BA-00B7-C620AB717636}" name="Source">
+      <GROUP id="{9D215FA7-1BF9-6CE4-48AC-B7E2575AEE24}" name="GUI">
+        <FILE id="pwLW2c" name="InputGUI.cpp" compile="1" resource="0" file="Source/InputGUI.cpp"/>
+        <FILE id="rf80uD" name="InputGUI.h" compile="0" resource="0" file="Source/InputGUI.h"/>
+        <FILE id="yIYOZk" name="OutputGUI.cpp" compile="1" resource="0" file="Source/OutputGUI.cpp"/>
+        <FILE id="oGeJPv" name="OutputGUI.h" compile="0" resource="0" file="Source/OutputGUI.h"/>
+        <FILE id="tiFOMg" name="ProcessingGUI.cpp" compile="1" resource="0"
+              file="Source/ProcessingGUI.cpp"/>
+        <FILE id="Lx7ptx" name="ProcessingGUI.h" compile="0" resource="0" file="Source/ProcessingGUI.h"/>
+      </GROUP>
       <GROUP id="{4B043EFD-80A0-5B66-7E3F-9CD9EFCB0C60}" name="DSP">
         <FILE id="pqwimS" name="Gain.cpp" compile="1" resource="0" file="Source/Gain.cpp"/>
         <FILE id="BE9qTv" name="Gain.h" compile="0" resource="0" file="Source/Gain.h"/>
