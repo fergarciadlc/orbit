@@ -34,5 +34,8 @@ private:
     juce::Slider mixSlider;
     juce::Slider outputSlider;
 
+    juce::Label mixtLabel;
+    juce::Label outputLabel;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OutputGUI)
 };

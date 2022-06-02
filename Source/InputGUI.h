@@ -30,6 +30,8 @@ private:
     juce::Slider inputSlider;
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> sliderAttachment;
 
+    juce::Label inputLabel;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (InputGUI)
 };
 

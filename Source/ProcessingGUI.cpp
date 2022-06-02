@@ -13,7 +13,13 @@
 
 ProcessingGUI::ProcessingGUI(OrbitAudioProcessor& p) : audioProcessor(p)
 {
+    //labels
+    addAndMakeVisible(roomSizeLabel);
+    addAndMakeVisible(dampingLabel);
+    addAndMakeVisible(widthLabel);
+    addAndMakeVisible(feedbackLabel);
 
+    // sliders
     roomSizeAttach = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts, "rb_room_size", roomSize);
     roomSize.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     roomSize.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, false, 0, 0);
@@ -38,13 +44,34 @@ ProcessingGUI::ProcessingGUI(OrbitAudioProcessor& p) : audioProcessor(p)
     bypassButton.setButtonText("Bypass");
     bypassButton.setClickingTogglesState(true);
     addAndMakeVisible(bypassButton);
+
+    // Labels 
+    //addAndMakeVisible(roomSizeLabel); 
+    roomSizeLabel.setText("Room Size", juce::NotificationType::dontSendNotification);
+    //roomSizeLabel.attachToComponent(&roomSize, false); 
+    roomSizeLabel.setJustificationType(juce::Justification::centred);
+
+    //addAndMakeVisible(dampingLabel); 
+    dampingLabel.setText("Damping", juce::NotificationType::dontSendNotification);
+    //dampingLabel.attachToComponent(&damping, false); 
+    dampingLabel.setJustificationType(juce::Justification::centred);
+
+    //addAndMakeVisible(widthLabel);
+    widthLabel.setText("Width", juce::NotificationType::dontSendNotification);
+    //widthLabel.attachToComponent(&width, false); 
+    widthLabel.setJustificationType(juce::Justification::centred);
+
+    //addAndMakeVisible(feedbackLabel); 
+    feedbackLabel.setText("Feedback", juce::NotificationType::dontSendNotification);
+    //feedbackLabel.attachToComponent(&feedback, false); 
+    feedbackLabel.setJustificationType(juce::Justification::centred);
 }
 
 ProcessingGUI::~ProcessingGUI() {}
 
 void ProcessingGUI::paint(juce::Graphics& g)
 {
-    g.fillAll(juce::Colours::darkturquoise);
+    g.fillAll(juce::Colours::transparentBlack);
 }
 
 void ProcessingGUI::resized()
@@ -57,5 +84,11 @@ void ProcessingGUI::resized()
     feedback.setBoundsRelative(0.75f - smallDiameter /2, 0.66f - smallDiameter /2, smallDiameter, smallDiameter);
 
     bypassButton.setBoundsRelative(0.25f, 0.85f, 0.5f, 0.1f);
+
+    float controlsOffset = 0.10f;
+    roomSizeLabel.setBoundsRelative(0.50f - bigDiameter   /2, 0.33f - bigDiameter   /2, bigDiameter,   bigDiameter);
+    dampingLabel .setBoundsRelative(0.25f - smallDiameter /2, 0.66f - smallDiameter /2 + controlsOffset, smallDiameter, smallDiameter);
+    widthLabel   .setBoundsRelative(0.50f - smallDiameter /2, 0.66f - smallDiameter /2 + controlsOffset, smallDiameter, smallDiameter);
+    feedbackLabel.setBoundsRelative(0.75f - smallDiameter /2, 0.66f - smallDiameter /2 + controlsOffset, smallDiameter, smallDiameter);
 }
 

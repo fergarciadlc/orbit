@@ -41,5 +41,10 @@ private:
 
     juce::TextButton bypassButton;
 
+    juce::Label roomSizeLabel;
+    juce::Label dampingLabel;
+    juce::Label widthLabel;
+    juce::Label feedbackLabel;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ProcessingGUI)
 };
