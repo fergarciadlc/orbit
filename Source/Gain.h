@@ -16,5 +16,5 @@ class Gain
 public:
     Gain();
     ~Gain();
-    void process(juce::AudioBuffer<float> inBuffer, float inGain);
+    void process(juce::AudioBuffer<float>& inBuffer, float inGain);
 };

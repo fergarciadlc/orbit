@@ -38,7 +38,7 @@ void Reverb::prepare(juce::dsp::ProcessSpec spec)
 }
 
 
-void Reverb::process(juce::AudioBuffer<float> inBuffer, juce::dsp::Reverb::Parameters reverbParameters)
+void Reverb::process(juce::AudioBuffer<float>& inBuffer, juce::dsp::Reverb::Parameters reverbParameters)
 {
     reverb.setParameters(reverbParameters);
     juce::dsp::AudioBlock<float> block(inBuffer);

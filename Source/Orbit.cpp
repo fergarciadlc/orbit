@@ -29,7 +29,7 @@ void Orbit::prepare(juce::dsp::ProcessSpec spec)
 }
 
 
-void Orbit::process(juce::AudioBuffer<float> inBuffer,
+void Orbit::process(juce::AudioBuffer<float>& inBuffer,
                     float inGain,
                     juce::dsp::Reverb::Parameters reverbParameters,
                     float outGain,

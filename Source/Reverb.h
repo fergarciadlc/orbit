@@ -27,7 +27,7 @@ public:
     
     void prepare(juce::dsp::ProcessSpec spec);
 
-    void process(juce::AudioBuffer<float> inBuffer, 
+    void process(juce::AudioBuffer<float>& inBuffer, 
                  juce::dsp::Reverb::Parameters reverbParameters);
 
 private:

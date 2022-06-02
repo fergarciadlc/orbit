@@ -13,7 +13,7 @@
 Gain::Gain() {}
 Gain::~Gain() {}
 
-void Gain::process(juce::AudioBuffer<float> inBuffer, float inGain)
+void Gain::process(juce::AudioBuffer<float>& inBuffer, float inGain)
 {
     for (int channel = 0; channel < inBuffer.getNumChannels(); ++channel)
     {

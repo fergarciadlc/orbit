@@ -29,7 +29,7 @@ public:
 
     void prepare(juce::dsp::ProcessSpec spec);
 
-    void process(juce::AudioBuffer<float> inBuffer,
+    void process(juce::AudioBuffer<float>& inBuffer,
                  float inGain,
                  juce::dsp::Reverb::Parameters reverbParameters,
                  float outGain,
