@@ -36,6 +36,7 @@ ProcessingGUI::ProcessingGUI(OrbitAudioProcessor& p) : audioProcessor(p)
 
     bypassAttach = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(audioProcessor.apvts, "bypass", bypassButton);
     bypassButton.setButtonText("Bypass");
+    bypassButton.setClickingTogglesState(true);
     addAndMakeVisible(bypassButton);
 }
 
