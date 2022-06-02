@@ -11,12 +11,14 @@
 #include "OutputGUI.h"
 
 
-OutputGUI::OutputGUI()
+OutputGUI::OutputGUI(OrbitAudioProcessor& p) : audioProcessor(p)
 {
+    mixAttach = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts, "rb_wet", mixSlider);
     mixSlider.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     mixSlider.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, false, 0, 0);
     addAndMakeVisible(mixSlider);
 
+    outputAttach = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts, "output_gain", outputSlider);
     outputSlider.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     outputSlider.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, false, 0, 0);
     addAndMakeVisible(outputSlider);

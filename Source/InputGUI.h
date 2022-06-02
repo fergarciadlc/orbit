@@ -10,21 +10,26 @@
 
 #pragma once
 #include <JuceHeader.h>
+#include "PluginProcessor.h"
 
 class InputGUI  : public juce::Component
 {
 public:
     
-    InputGUI();
+    InputGUI(OrbitAudioProcessor&);
     ~InputGUI() override;
 
     void paint (juce::Graphics&) override;
     void resized() override;
 
+
 private:
     
+    OrbitAudioProcessor& audioProcessor;
+
     juce::Slider inputSlider;
-    
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> sliderAttachment;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (InputGUI)
 };
 

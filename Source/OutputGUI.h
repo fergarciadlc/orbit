@@ -10,6 +10,7 @@
 
 #pragma once
 #include <JuceHeader.h>
+#include "PluginProcessor.h"
 
 //==============================================================================
 /*
@@ -17,13 +18,18 @@
 class OutputGUI : public juce::Component
 {
 public:
-    OutputGUI();
+    OutputGUI(OrbitAudioProcessor&);
     ~OutputGUI() override;
 
     void paint(juce::Graphics&) override;
     void resized() override;
 
 private:
+
+    OrbitAudioProcessor& audioProcessor;
+
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> mixAttach;
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> outputAttach;
 
     juce::Slider mixSlider;
     juce::Slider outputSlider;

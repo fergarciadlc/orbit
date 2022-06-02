@@ -31,11 +31,11 @@ private:
     //juce::Slider roomSizeDial;
     //std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> roomSizeDialAttach;
 
-    InputGUI input;
-    ProcessingGUI processing;
-    OutputGUI output;
-
     OrbitAudioProcessor& audioProcessor;
+
+    InputGUI input { audioProcessor };
+    ProcessingGUI processing { audioProcessor };
+    OutputGUI output { audioProcessor };
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (OrbitAudioProcessorEditor)
 };

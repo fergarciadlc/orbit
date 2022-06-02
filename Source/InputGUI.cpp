@@ -12,8 +12,10 @@
 #include <JuceHeader.h>
 #include "InputGUI.h"
 
-InputGUI::InputGUI()
+InputGUI::InputGUI(OrbitAudioProcessor& p): audioProcessor(p)
 {
+    sliderAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts, "input_gain", inputSlider);
+
     inputSlider.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     inputSlider.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, false, 0, 0);
     addAndMakeVisible(inputSlider);

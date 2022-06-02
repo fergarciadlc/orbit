@@ -10,18 +10,27 @@
 
 #pragma once
 #include <JuceHeader.h>
+#include "PluginProcessor.h"
+
 
 class ProcessingGUI : public juce::Component
 {
 public:
 
-    ProcessingGUI();
+    ProcessingGUI(OrbitAudioProcessor&);
     ~ProcessingGUI() override;
 
     void paint(juce::Graphics&) override;
     void resized() override;
 
 private:
+
+    OrbitAudioProcessor& audioProcessor;
+
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> roomSizeAttach;
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> dampingAttach;
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> widthAttach;
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> feedbackAttach;
 
     juce::Slider roomSize;
     juce::Slider damping;
