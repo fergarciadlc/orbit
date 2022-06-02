@@ -37,5 +37,9 @@ private:
     juce::Slider width;
     juce::Slider feedback;
 
+    std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment> bypassAttach;
+
+    juce::TextButton bypassButton;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ProcessingGUI)
 };

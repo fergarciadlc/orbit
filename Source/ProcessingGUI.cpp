@@ -33,6 +33,10 @@ ProcessingGUI::ProcessingGUI(OrbitAudioProcessor& p) : audioProcessor(p)
     feedback.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     feedback.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, false, 0, 0);
     addAndMakeVisible(feedback);
+
+    bypassAttach = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(audioProcessor.apvts, "bypass", bypassButton);
+    bypassButton.setButtonText("Bypass");
+    addAndMakeVisible(bypassButton);
 }
 
 ProcessingGUI::~ProcessingGUI() {}
@@ -50,5 +54,7 @@ void ProcessingGUI::resized()
     damping .setBoundsRelative(0.25f - smallDiameter /2, 0.66f - smallDiameter /2, smallDiameter, smallDiameter);
     width   .setBoundsRelative(0.50f - smallDiameter /2, 0.66f - smallDiameter /2, smallDiameter, smallDiameter); 
     feedback.setBoundsRelative(0.75f - smallDiameter /2, 0.66f - smallDiameter /2, smallDiameter, smallDiameter);
+
+    bypassButton.setBoundsRelative(0.25f, 0.85f, 0.5f, 0.1f);
 }
 
