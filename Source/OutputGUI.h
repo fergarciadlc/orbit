@@ -28,11 +28,11 @@ private:
 
     OrbitAudioProcessor& audioProcessor;
 
-    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> mixAttach;
-    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> outputAttach;
-
     juce::Slider mixSlider;
     juce::Slider outputSlider;
+
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> mixAttach;
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> outputAttach;
 
     juce::Label mixtLabel;
     juce::Label outputLabel;

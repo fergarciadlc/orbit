@@ -28,6 +28,7 @@ private:
     OrbitAudioProcessor& audioProcessor;
 
     juce::Slider inputSlider;
+
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> sliderAttachment;
 
     juce::Label inputLabel;

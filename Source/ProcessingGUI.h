@@ -27,19 +27,18 @@ private:
 
     OrbitAudioProcessor& audioProcessor;
 
-    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> roomSizeAttach;
-    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> dampingAttach;
-    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> widthAttach;
-    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> feedbackAttach;
-
     juce::Slider roomSize;
     juce::Slider damping;
     juce::Slider width;
     juce::Slider feedback;
 
-    std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment> bypassAttach;
-
     juce::TextButton bypassButton;
+    
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> roomSizeAttach;
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> dampingAttach;
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> widthAttach;
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> feedbackAttach;
+    std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment> bypassAttach;
 
     juce::Label roomSizeLabel;
     juce::Label dampingLabel;
