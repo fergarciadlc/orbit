@@ -13,6 +13,7 @@
 #include<JuceHeader.h>
 #include "Reverb.h"
 #include "Gain.h"
+#include "LFOPanner.h"
 
 class Orbit
 {
@@ -32,6 +33,8 @@ public:
     void process(juce::AudioBuffer<float>& inBuffer,
                  float inGain,
                  juce::dsp::Reverb::Parameters reverbParameters,
+                 float panningFrequency,
+                 float panningWidth,
                  float outGain,
                  bool isBypassed = false);
 
@@ -39,5 +42,6 @@ private:
     
     Gain gain;
     Reverb reverb;
+    lfoPanning lfoPanning;
 
 };

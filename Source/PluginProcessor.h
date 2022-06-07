@@ -10,6 +10,7 @@
 
 #include <JuceHeader.h>
 #include "Orbit.h"
+#include "LFOPanner.h"
 
 //==============================================================================
 /**
@@ -60,6 +61,9 @@ public:
 private:
 
     Orbit orbit;
+    //LFOPanner LFOPanner;
+    //cppPanning cppPanning;
+    //lfoPanning lfoPanning;
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (OrbitAudioProcessor)

@@ -17,6 +17,12 @@
       <GROUP id="{4B043EFD-80A0-5B66-7E3F-9CD9EFCB0C60}" name="DSP">
         <FILE id="pqwimS" name="Gain.cpp" compile="1" resource="0" file="Source/Gain.cpp"/>
         <FILE id="BE9qTv" name="Gain.h" compile="0" resource="0" file="Source/Gain.h"/>
+        <FILE id="RpIfRD" name="LFO.cpp" compile="1" resource="0" file="Source/LFO.cpp"/>
+        <FILE id="ym4QlJ" name="LFO.h" compile="0" resource="0" file="Source/LFO.h"/>
+        <FILE id="cqL2GU" name="LFOPanner.cpp" compile="1" resource="0" file="Source/LFOPanner.cpp"/>
+        <FILE id="lglB9Z" name="LFOPanner.h" compile="0" resource="0" file="Source/LFOPanner.h"/>
+        <FILE id="xVD9rq" name="Panning.cpp" compile="1" resource="0" file="Source/Panning.cpp"/>
+        <FILE id="dHAisP" name="Panning.h" compile="0" resource="0" file="Source/Panning.h"/>
         <FILE id="PHQ2To" name="Reverb.cpp" compile="1" resource="0" file="Source/Reverb.cpp"/>
         <FILE id="goKRt0" name="Reverb.h" compile="0" resource="0" file="Source/Reverb.h"/>
       </GROUP>

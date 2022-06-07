@@ -91,6 +91,36 @@ juce::AudioProcessorValueTreeState::ParameterLayout OrbitAudioProcessor::createP
         0.0f
         ));
 
+    parameters.add(
+        std::make_unique<juce::AudioParameterFloat>(
+        "panning",
+        "panning",
+        0.0f,
+        juce::MathConstants<float>::pi / 2.0f,
+        juce::MathConstants<float>::pi / 4.0f
+        //-1.0f,
+        //1.0f,
+        //0.0f
+        ));
+
+    parameters.add(
+        std::make_unique<juce::AudioParameterFloat>(
+            "lfo_frequency",
+            "lfo_frequency",
+            0.0f,
+            10.0f,
+            0.0f
+            ));
+
+    parameters.add(
+        std::make_unique<juce::AudioParameterFloat>(
+            "panning_width",
+            "panning_width",
+            0.0f,
+            1.0f,
+            1.0f
+            ));
+
     return parameters;
 }
 
@@ -165,6 +195,9 @@ void OrbitAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
     spec.numChannels = getTotalNumInputChannels();
 
     orbit.prepare(spec);
+
+    //LFOPanner.prepare(spec);
+    //lfoPanning.prepare(spec);
 }
 
 void OrbitAudioProcessor::releaseResources()
@@ -213,6 +246,21 @@ void OrbitAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::
     float inputGain = apvts.getRawParameterValue("input_gain")->load();
     float outputGain = apvts.getRawParameterValue("output_gain")->load();
 
+    float panningFrequency = apvts.getRawParameterValue("lfo_frequency")->load();
+    float panningWidth = apvts.getRawParameterValue("panning_width")->load();
+
+    //panning.process(buffer, apvts.getRawParameterValue("panning")->load());
+
+    //LFOPanner.process(
+    //    buffer,
+    //    apvts.getRawParameterValue("panning")->load(), 
+    //    apvts.getRawParameterValue("lfo_frequency")->load());
+
+    //LFOPanner.processLFOPanner(
+    //    buffer,
+    //    apvts.getRawParameterValue("panning")->load(), 
+    //    apvts.getRawParameterValue("lfo_frequency")->load());
+
     juce::dsp::Reverb::Parameters reverbParameters = orbit.getReverbParamters(
         apvts.getRawParameterValue("rb_room_size")->load(),
         apvts.getRawParameterValue("rb_damping")->load(),
@@ -226,9 +274,16 @@ void OrbitAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::
         buffer,
         inputGain,
         reverbParameters,
+        panningFrequency,
+        panningWidth,
         outputGain,
         isBypassed
     );
+
+    //cppPanning.process(buffer, apvts.getRawParameterValue("panning")->load());
+    //lfoPanning.process(buffer, 
+    //    apvts.getRawParameterValue("lfo_frequency")->load(),
+    //    apvts.getRawParameterValue("panning_width")->load());
 }
 
 //==============================================================================
