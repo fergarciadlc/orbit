@@ -91,22 +91,22 @@ juce::AudioProcessorValueTreeState::ParameterLayout OrbitAudioProcessor::createP
         0.0f
         ));
 
-    parameters.add(
-        std::make_unique<juce::AudioParameterFloat>(
-        "panning",
-        "panning",
-        0.0f,
-        juce::MathConstants<float>::pi / 2.0f,
-        juce::MathConstants<float>::pi / 4.0f
-        //-1.0f,
-        //1.0f,
-        //0.0f
-        ));
+    //parameters.add(
+    //    std::make_unique<juce::AudioParameterFloat>(
+    //    "panning",
+    //    "panning",
+    //    0.0f,
+    //    juce::MathConstants<float>::pi / 2.0f,
+    //    juce::MathConstants<float>::pi / 4.0f
+    //    //-1.0f,
+    //    //1.0f,
+    //    //0.0f
+    //    ));
 
     parameters.add(
         std::make_unique<juce::AudioParameterFloat>(
-            "lfo_frequency",
-            "lfo_frequency",
+            "panning_frequency",
+            "panning_frequency",
             0.0f,
             10.0f,
             0.0f
@@ -246,7 +246,7 @@ void OrbitAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::
     float inputGain = apvts.getRawParameterValue("input_gain")->load();
     float outputGain = apvts.getRawParameterValue("output_gain")->load();
 
-    float panningFrequency = apvts.getRawParameterValue("lfo_frequency")->load();
+    float panningFrequency = apvts.getRawParameterValue("panning_frequency")->load();
     float panningWidth = apvts.getRawParameterValue("panning_width")->load();
 
     //panning.process(buffer, apvts.getRawParameterValue("panning")->load());

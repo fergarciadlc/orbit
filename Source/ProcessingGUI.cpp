@@ -19,6 +19,9 @@ ProcessingGUI::ProcessingGUI(OrbitAudioProcessor& p) : audioProcessor(p)
     addAndMakeVisible(widthLabel);
     addAndMakeVisible(feedbackLabel);
 
+    addAndMakeVisible(panningFrequencyLabel);
+    addAndMakeVisible(panningWidthLabel);
+
     // sliders
     roomSizeAttach = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts, "rb_room_size", roomSize);
     roomSize.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
@@ -40,8 +43,18 @@ ProcessingGUI::ProcessingGUI(OrbitAudioProcessor& p) : audioProcessor(p)
     feedback.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, false, 0, 0);
     addAndMakeVisible(feedback);
 
+    panningFrequencyAttach = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts, "panning_frequency", panningFrequency);
+    panningFrequency.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+    panningFrequency.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, false, 0, 0);
+    addAndMakeVisible(panningFrequency);
+
+    panningWidthAttach = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts, "panning_width", panningWidth);
+    panningWidth.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+    panningWidth.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, false, 0, 0);
+    addAndMakeVisible(panningWidth);
+
     bypassAttach = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(audioProcessor.apvts, "bypass", bypassButton);
-    bypassButton.setButtonText("Bypass");
+    bypassButton.setButtonText("BYPASS");
     bypassButton.setClickingTogglesState(true);
     addAndMakeVisible(bypassButton);
 
@@ -65,6 +78,14 @@ ProcessingGUI::ProcessingGUI(OrbitAudioProcessor& p) : audioProcessor(p)
     feedbackLabel.setText("Feedback", juce::NotificationType::dontSendNotification);
     //feedbackLabel.attachToComponent(&feedback, false); 
     feedbackLabel.setJustificationType(juce::Justification::centred);
+
+    panningFrequencyLabel.setText("Spin", juce::NotificationType::dontSendNotification);
+    panningFrequencyLabel.setJustificationType(juce::Justification::centred);
+
+    panningWidthLabel.setText("Orbit", juce::NotificationType::dontSendNotification);
+    panningWidthLabel.setJustificationType(juce::Justification::centred);
+
+
 }
 
 ProcessingGUI::~ProcessingGUI() {}
@@ -83,12 +104,19 @@ void ProcessingGUI::resized()
     width   .setBoundsRelative(0.50f - smallDiameter /2, 0.66f - smallDiameter /2, smallDiameter, smallDiameter); 
     feedback.setBoundsRelative(0.75f - smallDiameter /2, 0.66f - smallDiameter /2, smallDiameter, smallDiameter);
 
-    bypassButton.setBoundsRelative(0.25f, 0.85f, 0.5f, 0.1f);
+    bypassButton.setBoundsRelative(0.33f, 0.025f, 0.33f, 0.1f);
 
     float controlsOffset = 0.10f;
     roomSizeLabel.setBoundsRelative(0.50f - bigDiameter   /2, 0.33f - bigDiameter   /2, bigDiameter,   bigDiameter);
     dampingLabel .setBoundsRelative(0.25f - smallDiameter /2, 0.66f - smallDiameter /2 + controlsOffset, smallDiameter, smallDiameter);
     widthLabel   .setBoundsRelative(0.50f - smallDiameter /2, 0.66f - smallDiameter /2 + controlsOffset, smallDiameter, smallDiameter);
     feedbackLabel.setBoundsRelative(0.75f - smallDiameter /2, 0.66f - smallDiameter /2 + controlsOffset, smallDiameter, smallDiameter);
+
+    panningFrequency     .setBoundsRelative(0.5f - 0.125f - smallDiameter / 2, 0.8f - smallDiameter / 2 + controlsOffset, smallDiameter, smallDiameter);
+    panningFrequencyLabel.setBoundsRelative(0.5f - 0.125f - smallDiameter / 2, 0.8f - smallDiameter / 2 + controlsOffset, smallDiameter, smallDiameter);
+    
+    panningWidth     .setBoundsRelative(0.5f + 0.125f - smallDiameter / 2, 0.8f - smallDiameter / 2 + controlsOffset, smallDiameter, smallDiameter);
+    panningWidthLabel.setBoundsRelative(0.5f + 0.125f - smallDiameter / 2, 0.8f - smallDiameter / 2 + controlsOffset, smallDiameter, smallDiameter);
+
 }
 
