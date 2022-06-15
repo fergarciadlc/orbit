@@ -29,9 +29,12 @@ private:
     OrbitAudioProcessor& audioProcessor;
 
     juce::Slider inputSlider;
+    juce::TextButton bypassButton;
+
     Knob_LookAndFeel lookAndFeel;
 
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> sliderAttachment;
+    std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment> bypassAttach;
 
     juce::Label inputLabel;
 

@@ -59,11 +59,6 @@ ProcessingGUI::ProcessingGUI(OrbitAudioProcessor& p) : audioProcessor(p)
     panningWidth.setLookAndFeel(&lookAndFeel);
     addAndMakeVisible(panningWidth);
 
-    bypassAttach = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(audioProcessor.apvts, "bypass", bypassButton);
-    bypassButton.setButtonText("BYPASS");
-    bypassButton.setClickingTogglesState(true);
-    addAndMakeVisible(bypassButton);
-
 
     // Labels 
     //addAndMakeVisible(roomSizeLabel); 
@@ -116,12 +111,10 @@ void ProcessingGUI::resized()
     float bigDiameter = 0.475f;
     float smallDiameter = 0.225f;
     float tinyDiameter = 0.18f;
-    roomSize.setBoundsRelative(0.50f - bigDiameter   /2, 0.33f - bigDiameter   /2, bigDiameter,   bigDiameter);
+    roomSize.setBoundsRelative(0.50f - bigDiameter   /2, 0.3f - bigDiameter   /2, bigDiameter,   bigDiameter);
     damping .setBoundsRelative(0.25f - smallDiameter /2, 0.63f - smallDiameter /2, smallDiameter, smallDiameter);
     width   .setBoundsRelative(0.50f - smallDiameter /2, 0.63f - smallDiameter /2, smallDiameter, smallDiameter); 
     feedback.setBoundsRelative(0.75f - smallDiameter /2, 0.63f - smallDiameter /2, smallDiameter, smallDiameter);
-
-    bypassButton.setBoundsRelative(0.0f, 0.025f, 0.33f, 0.1f);
 
     float controlsOffset = 0.10f;
     roomSizeLabel.setBoundsRelative(0.50f - bigDiameter   /2, 0.075f - bigDiameter   /2, bigDiameter,   bigDiameter);

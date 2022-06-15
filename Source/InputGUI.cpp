@@ -25,6 +25,11 @@ InputGUI::InputGUI(OrbitAudioProcessor& p): audioProcessor(p)
     inputLabel.setText("Input", juce::NotificationType::dontSendNotification);
     //inputLabel.attachToComponent(&inputSlider, false);
     inputLabel.setJustificationType(juce::Justification::centred);
+
+    bypassAttach = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(audioProcessor.apvts, "bypass", bypassButton);
+    bypassButton.setButtonText("BYPASS");
+    bypassButton.setClickingTogglesState(true);
+    addAndMakeVisible(bypassButton);
 }
 
 InputGUI::~InputGUI()
@@ -36,6 +41,7 @@ void InputGUI::paint (juce::Graphics& g)
 {
     //g.fillAll(juce::Colours::darkcyan);
     //g.fillAll(juce::Colours::darkcyan);
+    g.fillAll(juce::PixelARGB(64, 24, 34, 58));
 }
 
 void InputGUI::resized()
@@ -43,4 +49,6 @@ void InputGUI::resized()
     float diameter = 0.6f;
     inputSlider.setBoundsRelative(0.5f - diameter / 2, 0.5f - diameter / 2, diameter, diameter);
     inputLabel .setBoundsRelative(0.5f - diameter / 2, 0.325f - diameter / 2, diameter, diameter);
+
+    bypassButton.setBoundsRelative(0.25f, 0.8f, 0.5f, 0.1f);
 }

@@ -50,7 +50,7 @@ OutputGUI::~OutputGUI()
 
 void OutputGUI::paint(juce::Graphics& g)
 {
-    //g.fillAll(juce::PixelARGB(127, 24,34,58));
+    g.fillAll(juce::PixelARGB(64, 24,34,58));
     //g.fillAll(juce::Colours::darkcyan);
 }
 

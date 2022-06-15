@@ -38,13 +38,10 @@ private:
 
     Knob_LookAndFeel lookAndFeel;
 
-    juce::TextButton bypassButton;
-    
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> roomSizeAttach;
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> dampingAttach;
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> widthAttach;
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> feedbackAttach;
-    std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment> bypassAttach;
 
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> panningFrequencyAttach;
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> panningWidthAttach;
