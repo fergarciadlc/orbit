@@ -11,6 +11,7 @@
 #pragma once
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include "knob.h"
 
 //==============================================================================
 /*
@@ -30,6 +31,8 @@ private:
 
     juce::Slider mixSlider;
     juce::Slider outputSlider;
+
+    Knob_LookAndFeel lookAndFeel;
 
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> mixAttach;
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> outputAttach;

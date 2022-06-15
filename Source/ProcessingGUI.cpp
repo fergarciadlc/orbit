@@ -26,37 +26,44 @@ ProcessingGUI::ProcessingGUI(OrbitAudioProcessor& p) : audioProcessor(p)
     roomSizeAttach = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts, "rb_room_size", roomSize);
     roomSize.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     roomSize.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, false, 0, 0);
+    roomSize.setLookAndFeel(&lookAndFeel);
     addAndMakeVisible(roomSize);
 
     dampingAttach = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts, "rb_damping", damping);
     damping.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     damping.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, false, 0, 0);
+    damping.setLookAndFeel(&lookAndFeel);
     addAndMakeVisible(damping);
 
     widthAttach = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts, "rb_width", width);
     width.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     width.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, false, 0, 0);
+    width.setLookAndFeel(&lookAndFeel);
     addAndMakeVisible(width);
 
     feedbackAttach = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts, "rb_freeze", feedback);
     feedback.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     feedback.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, false, 0, 0);
+    feedback.setLookAndFeel(&lookAndFeel);
     addAndMakeVisible(feedback);
 
     panningFrequencyAttach = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts, "panning_frequency", panningFrequency);
     panningFrequency.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     panningFrequency.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, false, 0, 0);
+    panningFrequency.setLookAndFeel(&lookAndFeel);
     addAndMakeVisible(panningFrequency);
 
     panningWidthAttach = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts, "panning_width", panningWidth);
     panningWidth.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     panningWidth.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, false, 0, 0);
+    panningWidth.setLookAndFeel(&lookAndFeel);
     addAndMakeVisible(panningWidth);
 
     bypassAttach = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(audioProcessor.apvts, "bypass", bypassButton);
     bypassButton.setButtonText("BYPASS");
     bypassButton.setClickingTogglesState(true);
     addAndMakeVisible(bypassButton);
+
 
     // Labels 
     //addAndMakeVisible(roomSizeLabel); 
@@ -88,7 +95,16 @@ ProcessingGUI::ProcessingGUI(OrbitAudioProcessor& p) : audioProcessor(p)
 
 }
 
-ProcessingGUI::~ProcessingGUI() {}
+ProcessingGUI::~ProcessingGUI() 
+{
+    roomSize.setLookAndFeel(nullptr);
+    damping.setLookAndFeel(nullptr);
+    width.setLookAndFeel(nullptr);
+    feedback.setLookAndFeel(nullptr);
+
+    panningFrequency.setLookAndFeel(nullptr);
+    panningWidth.setLookAndFeel(nullptr);
+}
 
 void ProcessingGUI::paint(juce::Graphics& g)
 {
@@ -97,26 +113,27 @@ void ProcessingGUI::paint(juce::Graphics& g)
 
 void ProcessingGUI::resized()
 {
-    float bigDiameter = 0.5f;
-    float smallDiameter = 0.25f;
+    float bigDiameter = 0.475f;
+    float smallDiameter = 0.225f;
+    float tinyDiameter = 0.18f;
     roomSize.setBoundsRelative(0.50f - bigDiameter   /2, 0.33f - bigDiameter   /2, bigDiameter,   bigDiameter);
-    damping .setBoundsRelative(0.25f - smallDiameter /2, 0.66f - smallDiameter /2, smallDiameter, smallDiameter);
-    width   .setBoundsRelative(0.50f - smallDiameter /2, 0.66f - smallDiameter /2, smallDiameter, smallDiameter); 
-    feedback.setBoundsRelative(0.75f - smallDiameter /2, 0.66f - smallDiameter /2, smallDiameter, smallDiameter);
+    damping .setBoundsRelative(0.25f - smallDiameter /2, 0.63f - smallDiameter /2, smallDiameter, smallDiameter);
+    width   .setBoundsRelative(0.50f - smallDiameter /2, 0.63f - smallDiameter /2, smallDiameter, smallDiameter); 
+    feedback.setBoundsRelative(0.75f - smallDiameter /2, 0.63f - smallDiameter /2, smallDiameter, smallDiameter);
 
-    bypassButton.setBoundsRelative(0.33f, 0.025f, 0.33f, 0.1f);
+    bypassButton.setBoundsRelative(0.0f, 0.025f, 0.33f, 0.1f);
 
     float controlsOffset = 0.10f;
-    roomSizeLabel.setBoundsRelative(0.50f - bigDiameter   /2, 0.33f - bigDiameter   /2, bigDiameter,   bigDiameter);
-    dampingLabel .setBoundsRelative(0.25f - smallDiameter /2, 0.66f - smallDiameter /2 + controlsOffset, smallDiameter, smallDiameter);
-    widthLabel   .setBoundsRelative(0.50f - smallDiameter /2, 0.66f - smallDiameter /2 + controlsOffset, smallDiameter, smallDiameter);
-    feedbackLabel.setBoundsRelative(0.75f - smallDiameter /2, 0.66f - smallDiameter /2 + controlsOffset, smallDiameter, smallDiameter);
+    roomSizeLabel.setBoundsRelative(0.50f - bigDiameter   /2, 0.075f - bigDiameter   /2, bigDiameter,   bigDiameter);
+    dampingLabel .setBoundsRelative(0.25f - smallDiameter /2, 0.63f - smallDiameter /2 + controlsOffset, smallDiameter, smallDiameter);
+    widthLabel   .setBoundsRelative(0.50f - smallDiameter /2, 0.63f - smallDiameter /2 + controlsOffset, smallDiameter, smallDiameter);
+    feedbackLabel.setBoundsRelative(0.75f - smallDiameter /2, 0.63f - smallDiameter /2 + controlsOffset, smallDiameter, smallDiameter);
 
-    panningFrequency     .setBoundsRelative(0.5f - 0.125f - smallDiameter / 2, 0.8f - smallDiameter / 2 + controlsOffset, smallDiameter, smallDiameter);
-    panningFrequencyLabel.setBoundsRelative(0.5f - 0.125f - smallDiameter / 2, 0.8f - smallDiameter / 2 + controlsOffset, smallDiameter, smallDiameter);
+    panningFrequency     .setBoundsRelative(0.5f - 0.125f - tinyDiameter / 2, 0.8f - tinyDiameter / 2 + controlsOffset, tinyDiameter, tinyDiameter);
+    panningFrequencyLabel.setBoundsRelative(0.5f - 0.125f - tinyDiameter / 2, 0.7125f, tinyDiameter, tinyDiameter);
     
-    panningWidth     .setBoundsRelative(0.5f + 0.125f - smallDiameter / 2, 0.8f - smallDiameter / 2 + controlsOffset, smallDiameter, smallDiameter);
-    panningWidthLabel.setBoundsRelative(0.5f + 0.125f - smallDiameter / 2, 0.8f - smallDiameter / 2 + controlsOffset, smallDiameter, smallDiameter);
+    panningWidth         .setBoundsRelative(0.5f + 0.125f - tinyDiameter / 2, 0.8f - tinyDiameter / 2 + controlsOffset, tinyDiameter, tinyDiameter);
+    panningWidthLabel    .setBoundsRelative(0.5f + 0.125f - tinyDiameter / 2, 0.7125f, tinyDiameter, tinyDiameter);
 
 }
 

@@ -4,10 +4,16 @@
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" companyName="Cepstrum"
               pluginFormats="buildStandalone,buildVST3">
   <MAINGROUP id="Etl0n4" name="orbit">
+    <GROUP id="{168D6773-064F-7218-2658-66D46A80DD11}" name="Assets">
+      <FILE id="D29vt2" name="bg.jpg" compile="0" resource="1" file="Assets/bg.jpg"/>
+      <FILE id="GbnvnS" name="white_knob.png" compile="0" resource="1" file="Assets/white_knob.png"/>
+    </GROUP>
     <GROUP id="{1F612503-F3CD-E7BA-00B7-C620AB717636}" name="Source">
       <GROUP id="{9D215FA7-1BF9-6CE4-48AC-B7E2575AEE24}" name="GUI">
         <FILE id="pwLW2c" name="InputGUI.cpp" compile="1" resource="0" file="Source/InputGUI.cpp"/>
         <FILE id="rf80uD" name="InputGUI.h" compile="0" resource="0" file="Source/InputGUI.h"/>
+        <FILE id="RybBCl" name="knob.cpp" compile="1" resource="0" file="Source/knob.cpp"/>
+        <FILE id="yzIS6Q" name="knob.h" compile="0" resource="0" file="Source/knob.h"/>
         <FILE id="yIYOZk" name="OutputGUI.cpp" compile="1" resource="0" file="Source/OutputGUI.cpp"/>
         <FILE id="oGeJPv" name="OutputGUI.h" compile="0" resource="0" file="Source/OutputGUI.h"/>
         <FILE id="tiFOMg" name="ProcessingGUI.cpp" compile="1" resource="0"

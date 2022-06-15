@@ -11,6 +11,7 @@
 #pragma once
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include "knob.h"
 
 class InputGUI  : public juce::Component
 {
@@ -28,6 +29,7 @@ private:
     OrbitAudioProcessor& audioProcessor;
 
     juce::Slider inputSlider;
+    Knob_LookAndFeel lookAndFeel;
 
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> sliderAttachment;
 

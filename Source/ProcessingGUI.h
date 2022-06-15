@@ -11,6 +11,7 @@
 #pragma once
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include "knob.h"
 
 
 class ProcessingGUI : public juce::Component
@@ -34,6 +35,8 @@ private:
 
     juce::Slider panningFrequency;
     juce::Slider panningWidth;
+
+    Knob_LookAndFeel lookAndFeel;
 
     juce::TextButton bypassButton;
     

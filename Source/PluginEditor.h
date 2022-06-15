@@ -13,6 +13,7 @@
 #include "InputGUI.h"
 #include "ProcessingGUI.h"
 #include "OutputGUI.h"
+//#include "Background.h"
 
 //==============================================================================
 /**
@@ -36,6 +37,9 @@ private:
     InputGUI input { audioProcessor };
     ProcessingGUI processing { audioProcessor };
     OutputGUI output { audioProcessor };
+
+    //Background::BGComponent Background;
+    juce::Image background;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (OrbitAudioProcessorEditor)
 };
