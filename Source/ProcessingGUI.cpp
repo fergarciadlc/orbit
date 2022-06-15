@@ -103,7 +103,7 @@ ProcessingGUI::~ProcessingGUI()
 
 void ProcessingGUI::paint(juce::Graphics& g)
 {
-    g.fillAll(juce::Colours::transparentBlack);
+    //g.fillAll(juce::Colours::transparentBlack);
 }
 
 void ProcessingGUI::resized()

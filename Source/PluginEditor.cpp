@@ -44,9 +44,10 @@ void OrbitAudioProcessorEditor::paint (juce::Graphics& g)
 
     g.drawImage(background, getLocalBounds().toFloat());
 
-    g.setColour (juce::Colours::white);
-    g.setFont (15.0f);
-    g.drawFittedText ("oRBit", getLocalBounds(), juce::Justification::centred, 1);
+    //g.setColour (juce::Colours::white);
+    g.setColour (juce::PixelARGB(127, 255,255,255));
+    g.setFont (19.0f);
+    g.drawFittedText ("o  R  B  i  t", getLocalBounds(), juce::Justification::centred, 1);
 }
 
 void OrbitAudioProcessorEditor::resized()
