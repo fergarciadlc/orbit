@@ -121,6 +121,12 @@ juce::AudioProcessorValueTreeState::ParameterLayout OrbitAudioProcessor::createP
             1.0f
             ));
 
+    parameters.add(std::make_unique<juce::AudioParameterFloat>("mix",
+        "mix",
+        0.0f,
+        100.0f,
+        35.0f));
+
     return parameters;
 }
 
@@ -249,6 +255,8 @@ void OrbitAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::
     float panningFrequency = apvts.getRawParameterValue("panning_frequency")->load();
     float panningWidth = apvts.getRawParameterValue("panning_width")->load();
 
+    float mixLevel = apvts.getRawParameterValue("mix")->load();
+
     //panning.process(buffer, apvts.getRawParameterValue("panning")->load());
 
     //LFOPanner.process(
@@ -264,8 +272,8 @@ void OrbitAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::
     juce::dsp::Reverb::Parameters reverbParameters = orbit.getReverbParamters(
         apvts.getRawParameterValue("rb_room_size")->load(),
         apvts.getRawParameterValue("rb_damping")->load(),
-        apvts.getRawParameterValue("rb_wet")->load(),
-        1.0f - apvts.getRawParameterValue("rb_wet")->load(),
+        1.0f,
+        0.0f,
         apvts.getRawParameterValue("rb_width")->load(),
         apvts.getRawParameterValue("rb_freeze")->load()
     );
@@ -277,8 +285,11 @@ void OrbitAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::
         panningFrequency,
         panningWidth,
         outputGain,
+        mixLevel,
         isBypassed
     );
+
+    //dryWet.process(buffer, dryBuffer, apvts.getRawParameterValue("mix")->load());
 
     //cppPanning.process(buffer, apvts.getRawParameterValue("panning")->load());
     //lfoPanning.process(buffer, 

@@ -25,6 +25,9 @@ juce::dsp::Reverb::Parameters Orbit::getReverbParamters(float roomSize,
 
 void Orbit::prepare(juce::dsp::ProcessSpec spec)
 {
+    dryBuffer.setSize(spec.numChannels, spec.maximumBlockSize);
+    dryBuffer.clear();
+
     reverb.prepare(spec);
     lfoPanning.prepare(spec);
 }
@@ -36,13 +39,19 @@ void Orbit::process(juce::AudioBuffer<float>& inBuffer,
                     float panningFrequency,
                     float panningWidth,
                     float outGain,
+                    float mixLevel,
                     bool isBypassed)
 {
     if (isBypassed) { return; }
     //DBG("Wet:"); DBG(reverbParameters.wetLevel);
     //DBG("DRY 2x:"); DBG(reverbParameters.dryLevel*2.0f);
+
+    dryBuffer.makeCopyOf(inBuffer);
+
     gain.process(inBuffer, inGain);
-    lfoPanning.process(inBuffer, panningFrequency, panningWidth);
+    lfoPanning.process(dryBuffer, panningFrequency, panningWidth);
     reverb.process(inBuffer, reverbParameters);
+    //lfoPanning.process(inBuffer, panningFrequency, panningWidth);
     gain.process(inBuffer, outGain);
+    dryWet.process(inBuffer, dryBuffer, mixLevel);
 }

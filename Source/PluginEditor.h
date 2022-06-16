@@ -13,7 +13,6 @@
 #include "InputGUI.h"
 #include "ProcessingGUI.h"
 #include "OutputGUI.h"
-//#include "Background.h"
 
 //==============================================================================
 /**

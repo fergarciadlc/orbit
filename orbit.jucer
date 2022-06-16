@@ -21,6 +21,8 @@
         <FILE id="Lx7ptx" name="ProcessingGUI.h" compile="0" resource="0" file="Source/ProcessingGUI.h"/>
       </GROUP>
       <GROUP id="{4B043EFD-80A0-5B66-7E3F-9CD9EFCB0C60}" name="DSP">
+        <FILE id="EMRfR9" name="DryWet.cpp" compile="1" resource="0" file="Source/DryWet.cpp"/>
+        <FILE id="cLGShq" name="DryWet.h" compile="0" resource="0" file="Source/DryWet.h"/>
         <FILE id="pqwimS" name="Gain.cpp" compile="1" resource="0" file="Source/Gain.cpp"/>
         <FILE id="BE9qTv" name="Gain.h" compile="0" resource="0" file="Source/Gain.h"/>
         <FILE id="RpIfRD" name="LFO.cpp" compile="1" resource="0" file="Source/LFO.cpp"/>

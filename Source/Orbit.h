@@ -14,6 +14,7 @@
 #include "Reverb.h"
 #include "Gain.h"
 #include "LFOPanner.h"
+#include "DryWet.h"
 
 class Orbit
 {
@@ -36,9 +37,13 @@ public:
                  float panningFrequency,
                  float panningWidth,
                  float outGain,
+                 float mixLevel,
                  bool isBypassed = false);
 
 private:
+
+    juce::AudioBuffer<float> dryBuffer;
+    DryWet dryWet;
     
     Gain gain;
     Reverb reverb;

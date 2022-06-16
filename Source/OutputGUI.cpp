@@ -18,7 +18,7 @@ OutputGUI::OutputGUI(OrbitAudioProcessor& p) : audioProcessor(p)
     addAndMakeVisible(outputLabel);
     addAndMakeVisible(mixtLabel);
 
-    mixAttach = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts, "rb_wet", mixSlider);
+    mixAttach = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts, "mix", mixSlider);
     mixSlider.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     mixSlider.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, false, 0, 0);
     mixSlider.setLookAndFeel(&lookAndFeel);
