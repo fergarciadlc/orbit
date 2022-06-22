@@ -52,13 +52,20 @@ void OutputGUI::paint(juce::Graphics& g)
 {
     g.fillAll(juce::PixelARGB(64, 24,34,58));
     //g.fillAll(juce::Colours::darkcyan);
+    //g.fillRect(10, 10, 40, 40);
 }
 
 void OutputGUI::resized()
 {
     float diameter = 0.6f;
-    mixSlider   .setBoundsRelative(0.5f - diameter/2, 0.33f - diameter/2, diameter, diameter);
-    outputSlider.setBoundsRelative(0.5f - diameter/2, 0.66f - diameter/2, diameter, diameter);
+    mixSlider   .setBoundsRelative(0.5f - diameter/2, 
+                                   0.33f - diameter/4, 
+                                   diameter, 
+                                   diameter/2);
+    outputSlider.setBoundsRelative(0.5f - diameter/2, 
+                                   0.66f - diameter/4, 
+                                   diameter, 
+                                   diameter/2);
 
     mixtLabel  .setBoundsRelative(0.5f - diameter / 2, 0.33f - 0.15f - diameter / 2, diameter, diameter);
     outputLabel.setBoundsRelative(0.5f - diameter / 2, 0.66f - 0.15f - diameter / 2, diameter, diameter);

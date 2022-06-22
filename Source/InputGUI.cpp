@@ -47,7 +47,10 @@ void InputGUI::paint (juce::Graphics& g)
 void InputGUI::resized()
 {
     float diameter = 0.6f;
-    inputSlider.setBoundsRelative(0.5f - diameter / 2, 0.5f - diameter / 2, diameter, diameter);
+    inputSlider.setBoundsRelative(0.5f - diameter / 2, 
+                                  0.5f - diameter / 4, 
+                                  diameter, 
+                                  diameter/2);
     inputLabel .setBoundsRelative(0.5f - diameter / 2, 0.325f - diameter / 2, diameter, diameter);
 
     bypassButton.setBoundsRelative(0.25f, 0.8f, 0.5f, 0.1f);
