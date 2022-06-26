@@ -9,7 +9,6 @@
 */
 
 #include "knob.h"
-#include "Knob.h"
 
 Knob_LookAndFeel::Knob_LookAndFeel()
 {
