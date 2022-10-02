@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="h31knd" name="orbit" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" companyName="Cepstrum"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" companyName="fergarciadlc"
               pluginFormats="buildStandalone,buildVST3">
   <MAINGROUP id="Etl0n4" name="orbit">
     <GROUP id="{168D6773-064F-7218-2658-66D46A80DD11}" name="Assets">
